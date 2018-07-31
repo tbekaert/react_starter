@@ -1,0 +1,30 @@
+{
+  "short_name": "react_starter",
+  "name": "React_starter - A react starter project",
+  "icons": [
+    {
+      "src": "48x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?launcher=true",
+  "display": "standalone",
+  "theme_color": "#12b886",
+  "background_color": "#FFFFFF"
+}
