@@ -1,0 +1,84 @@
+@import "../../../assets/scss/helpers/variables";
+@import "../../../assets/scss/helpers/mixins";
+
+.lazy-image {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  background: clr(gray-light);
+  max-width: 100%;
+
+  &:before{
+    content: '';
+    display: block;
+    padding-top: var(--ratio);
+  }
+  &:after{
+    content: '';
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background: clr(gray);
+    animation: 1s loadingImage infinite linear;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  @keyframes loadingImage{
+      0%{ opacity: 1; }
+     50%{ opacity: 0.5; }
+    100%{ opacity: 1; }
+  }
+
+  img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+
+    &,
+    &:after{
+      opacity: 0;
+      filter: saturate(20%) contrast(120%);
+      transform: scale(1.05) translate3d(0,0,0);
+      
+      transition: opacity $anim-duration*2 $anim-easing,
+                  filter  $anim-duration*3 $anim-easing,
+                  transform $anim-duration*3 $anim-easing;
+
+      will-change: transform, opacity, filter;
+    }
+    
+
+    &:after{
+      content: 'Erreur lors du chargement';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: clr(white);
+      background: clr(alert);
+
+      transition-delay: $anim-duration;
+    }
+  }
+  
+  &.loaded img,
+  &.error img,
+  &.error img:after{
+    opacity: 1;
+    filter: saturate(100%) contrast(100%);
+    transform: scale(1) translate3d(0,0,0);
+  }
+}

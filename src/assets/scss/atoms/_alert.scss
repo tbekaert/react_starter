@@ -1,0 +1,88 @@
+//
+//  A L E R T
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+.alert-box{
+  position: relative;
+  padding: 1.5rem 7rem 1.5rem 4rem;
+  margin-bottom: $vr;
+  max-height: 20rem;
+  margin-top: $vr;
+
+  transition: max-height $anim $anim-duration*0.5, padding $anim $anim-duration*0.5, margin $anim $anim-duration*0.5;
+
+  //  Colors
+  //  ───────────────────────────────────
+  /*---
+  title:   Alert
+  name:    alert
+  ---
+
+  Alert can have different colors:
+
+  ```example:html
+  <div class="alert-box success">
+    <p class="no-margin">This is a success alert</p>
+    <a href="#x" class="alert-box--close"><svg class="icon small black"><use xlink:href="#icon-close" /></svg></a>
+  </div>
+  <div class="alert-box warning">
+    <p class="no-margin">This is a warning alert</p>
+    <a href="#x" class="alert-box--close"><svg class="icon small gray-darker"><use xlink:href="#icon-close" /></svg></a>
+  </div>
+  <div class="alert-box info">
+    <p class="no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <a href="#x" class="alert-box--close"><svg class="icon small white"><use xlink:href="#icon-close" /></svg></a>
+  </div>
+  <div class="alert-box alert">
+    <p class="no-margin">This is an alert alert ¯\_(ツ)_/¯</p>
+    <a href="#x" class="alert-box--close"><svg class="icon small white"><use xlink:href="#icon-close" /></svg></a>
+  </div>
+  ```
+  */
+  &.success{
+    background: clr(success);
+    color: clr(white);
+  }
+  &.warning{
+    background: clr(warning);
+    color: clr(black);
+  }
+  &.info{
+    background: clr(info);
+    color: clr(white);
+  }
+  &.alert{
+    background: clr(alert);
+    color: clr(white);
+  }
+
+  .alert-box--close{
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    top: 1.5rem;
+    right: 2rem;
+    background-size: 66%;
+    cursor: pointer;
+    transition: opacity $anim;
+  }
+
+  > *{
+    transition: opacity $anim;
+    transition-delay: $anim-duration/2;
+  }
+
+  &.remove{
+    overflow: hidden;
+    max-height: 0;
+    padding: 0 7rem 0 4rem;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    > *{
+      opacity: 0;
+    }
+  }
+}

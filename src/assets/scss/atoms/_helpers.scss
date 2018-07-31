@@ -1,0 +1,165 @@
+//
+//  H E L P E R S
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@each $bp_o in $bps {
+  $bp_k: nth($bp_o, 1);
+  $bp_v: nth($bp_o, 2);
+
+  @include inMedia($bp_k){
+
+    //  Margin - Padding
+    //  ───────────────────────────────────
+    $vertical-values: ( 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4, 5, 5.5, 6, "auto" );
+
+    @each $v in reverse($vertical-values){
+      $gap: if(type-of($v) == 'number', $vr * $v, #{$v});
+
+      @include selector('.mg-#{str-replace(inspect($v), '.', '_')}', $bp_v){ margin: $gap; }
+      @include selector('.mgv-#{str-replace(inspect($v), '.', '_')}', $bp_v){
+        margin-top: $gap;
+        margin-bottom: $gap;
+      }
+      @include selector('.mgh-#{str-replace(inspect($v), '.', '_')}', $bp_v){
+        margin-right: $gap;
+        margin-left: $gap;
+      }
+      @include selector('.mgt-#{str-replace(inspect($v), '.', '_')}', $bp_v){ margin-top: $gap; }
+      @include selector('.mgr-#{str-replace(inspect($v), '.', '_')}', $bp_v){ margin-right: $gap; }
+      @include selector('.mgb-#{str-replace(inspect($v), '.', '_')}', $bp_v){ margin-bottom: $gap; }
+      @include selector('.mgl-#{str-replace(inspect($v), '.', '_')}', $bp_v){ margin-left: $gap; }
+
+      @if(type-of($v) == 'number'){
+        @include selector('.pg-#{str-replace(inspect($v), '.', '_')}', $bp_v){ padding: $gap; }
+        @include selector('.pgv-#{str-replace(inspect($v), '.', '_')}', $bp_v){
+          padding-top: $gap;
+          padding-bottom: $gap;
+        }
+        @include selector('.pgh-#{str-replace(inspect($v), '.', '_')}', $bp_v){
+          padding-right: $gap;
+          padding-left: $gap;
+        }
+        @include selector('.pgt-#{str-replace(inspect($v), '.', '_')}', $bp_v){ padding-top: $gap; }
+        @include selector('.pgr-#{str-replace(inspect($v), '.', '_')}', $bp_v){ padding-right: $gap; }
+        @include selector('.pgb-#{str-replace(inspect($v), '.', '_')}', $bp_v){ padding-bottom: $gap; }
+        @include selector('.pgl-#{str-replace(inspect($v), '.', '_')}', $bp_v){ padding-left: $gap; }
+      }
+    }
+
+    //  Text align
+    //  ───────────────────────────────────
+    @include selector('.text-left', $bp_v){ text-align: left; }
+    @include selector('.text-center', $bp_v){ text-align: center; }
+    @include selector('.text-right', $bp_v){ text-align: right; }
+
+    //  Break word
+    //  ───────────────────────────────────
+    @include selector('.break-word', $bp_v){ word-wrap: break-word; }
+    @include selector('.word-normal', $bp_v){ word-wrap: normal; }
+
+    //  Line Height
+    //  ───────────────────────────────────
+    $lhs: ( 0.75, 1, 1.1, 1.2, 1.425 );
+    @each $lh in reverse($lhs){
+      @include selector('.lh-#{str-replace(inspect($lh), '.', '_')}', $bp_v){ line-height: $lh; }
+    }
+
+    //  Font Size
+    //  ───────────────────────────────────
+    $font-sizes: (10, 11, 12, 13, 14, 16, 18, 21, 22, 24, 28, 32, 34, 36, 72, 100);
+    @each $fz in reverse($font-sizes){
+      @include selector('.fz-#{str-replace(inspect($fz), '.', '_')}', $bp_v){ font-size: (($fz / 10) * 1rem); }
+    }
+
+    //  Font Weight
+    //  ───────────────────────────────────
+    $font-weight: (300, 400, 600, 700);
+    @each $fw in reverse($font-weight){
+      @include selector('.fw-#{str-replace(inspect($fw), '.', '_')}', $bp_v){ font-weight: $fw; }
+    }
+
+    //  Colors
+    //  ───────────────────────────────────
+    @each $color in $colors {
+      $c_name: nth($color, 1);
+      $c_hex: nth($color, 2);
+
+      @include selector('.text-#{$c_name}[class]', $bp_v){ color: $c_hex; }
+      @include selector('.h-text-#{$c_name}[class]', $bp_v){ &:hover{ color: $c_hex; } }
+      @include selector('.bg-#{$c_name}', $bp_v){ background-color: $c_hex; }
+      @include selector('.h-bg-#{$c_name}', $bp_v){ &:hover{ background-color: $c_hex; } }
+      @include selector('.bg-#{$c_name}-muted', $bp_v){ background-color: rgba($c_hex, 0.2); }
+    }
+
+    //  Border
+    //  ───────────────────────────────────
+    @for $i from 0 through 4{
+      @each $color in $colors {
+        $c_name: nth($color, 1);
+        $c_hex: nth($color, 2);
+
+        @include selector('.bd-#{$i}-#{$c_name}', $bp_v){ border: ($i * 1px) solid $c_hex; }
+        @include selector('.h-bd-#{$i}-#{$c_name}', $bp_v){ &:hover{ border: ($i * 1px) solid $c_hex; } }
+        @include selector('.bdt-#{$i}-#{$c_name}', $bp_v){ border-top: ($i * 1px) solid $c_hex; }
+        @include selector('.bdr-#{$i}-#{$c_name}', $bp_v){ border-right: ($i * 1px) solid $c_hex; }
+        @include selector('.bdb-#{$i}-#{$c_name}', $bp_v){ border-bottom: ($i * 1px) solid $c_hex; }
+        @include selector('.bdl-#{$i}-#{$c_name}', $bp_v){ border-left: ($i * 1px) solid $c_hex; }
+      }
+    }
+
+    //  Others
+    //  ───────────────────────────────────
+    @include selector('.muted', $bp_v){ opacity: 0.4; }
+    @include selector('.uppercase', $bp_v){ text-transform: uppercase; }
+    @include selector('.capitalize', $bp_v){ text-transform: capitalize; }
+    @include selector('.ovf-hidden', $bp_v){ overflow: hidden; }
+  }
+}
+.bd-radius{
+  border-radius: $global-radius;
+}
+.no-radius{
+  border-radius: 0;
+}
+.round{
+  border-radius: 50%;
+}
+.ratio-1_1{
+  position: relative;
+  > *:first-child{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  &:before{
+    display: block;
+    content: "";
+    padding-bottom: 100%;
+  }
+}
+.relative{
+  position: relative;
+}
+.rotate-45{ transform: rotate(45deg); }
+.rotate-90{ transform: rotate(90deg); }
+.rotate-180{ transform: rotate(180deg); }
+.rotate-270{ transform: rotate(270deg); }
+.anim-all{ transition: all $anim; }
+
+.shadow{
+  box-shadow: 0 2px 4px rgba(0,0,0,0.16);
+}
+.shadow__long{
+  box-shadow: 0 8px 24px 0 rgba(0,0,0,0.16);
+}
+
+.curp{
+  cursor: pointer;
+}
+
+.no-select{
+  user-select: none;
+}

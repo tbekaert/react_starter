@@ -1,0 +1,42 @@
+//
+//  H E A D E R
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+header{
+  
+}
+.header__profile{
+  $self: &;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  
+  &__trigger{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.4rem 0;
+  }
+  &__submenu{
+    display: flex;
+    flex-direction: column;
+    background: clr(white);
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    border-radius: 4px;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.16);
+    
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity $anim;
+  }
+  &__trigger:hover + #{$self}__submenu,
+  #{$self}__submenu:hover{
+    pointer-events: auto;
+    opacity: 1;
+  }
+}

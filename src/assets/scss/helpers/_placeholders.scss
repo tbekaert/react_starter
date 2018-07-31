@@ -1,0 +1,24 @@
+//
+//  P L A C E H O L D E R S
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+%clearfix{
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+  &:after {
+      clear: both;
+  }
+}
+
+%icon-close-white{
+  background-image: url("../img/icons/icon-close-white.svg");
+  background-repeat: no-repeat;
+}
+%icon-close-black{
+  background-image: url("../img/icons/icon-close-black.svg");
+  background-repeat: no-repeat;
+}

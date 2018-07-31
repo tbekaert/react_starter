@@ -1,0 +1,123 @@
+//
+//  M O D A L
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+.modal{
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  bottom: 100%;
+  left: 0;
+  background: rgba(clr(gray-darker), 0);
+  transition: background $anim $anim-duration,
+              bottom $anim $anim-duration;
+
+  .modal--inner{
+    position: relative;
+    width: 95%;
+    opacity: 0;
+    transform: translateY(-150%);
+    margin-top: $vr*2;
+    max-height: calc(100% - #{$vr*4});
+    padding: $vr*2 0;
+    background: clr(white);
+    border-radius: 0;
+    transition: all $anim 0ms;
+
+    @media #{$sm-only}{
+      margin-top: $vr;
+    }
+  }
+  .modal--scroll{
+    overflow: scroll;
+  }
+  .modal--title{
+    padding: 0 $vr;
+    text-transform: uppercase;
+
+    @media #{$sm-only}{
+      padding: 0 $vr/2;
+    }
+  }
+  .modal--close{
+    // box-sizing: content-box;
+    position: absolute;
+    display: block;
+    top: $vr;
+    right: $vr;
+    width: $vr*2;
+    height: $vr*2;
+    padding: $vr/2;
+    line-height: 1;
+    background: transparent;
+    cursor: pointer;
+    transition: background $anim;
+
+    @media #{$sm-only}{
+      top: $vr/2;
+      right: $vr/2;
+    }
+
+    svg{
+      width: $vr;
+      height: $vr;
+      transition: color $anim;
+    }
+
+    &:hover{
+      background: clr(gray-light);
+
+      svg{
+        color: clr(gray-dark);
+      }
+    }
+  }
+
+  &:target{
+    bottom: 0;
+    background: rgba(#000, 0.75);
+    transition: background $anim 0ms,
+                bottom $anim 0ms;
+
+    .modal--inner{
+      transform: translateY(0);
+      opacity: 1;
+      transition: all $anim $anim-duration;
+    }
+
+  }
+  #x {
+    display: none;
+  }
+}
+
+
+/*---
+title:   Modal
+name:    modal
+---
+
+```example:html
+<a href="#open-modal" class="button primary sm-mgv-6">Open modal</a>
+
+<div class="modal" id="open-modal" aria-hidden="true">
+  <div class="modal--inner row">
+    <a href="#x" class="modal--close" aria-hidden="true">
+      <svg class="icon secondary"><use xlink:href="#icon-close"/></svg>
+    </a>
+    <div class="column-12">
+      <span class="h2 modal--title">Modal Title</span>
+      <div class="modal--scroll row flex-fill">
+        <div class="column-12">
+          <p>
+            This is a modal
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+*/

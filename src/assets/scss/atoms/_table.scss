@@ -1,0 +1,503 @@
+//
+//  T A B L E
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+table{
+  border: 1px solid clr(gray);
+  border-collapse: collapse;
+  margin-bottom: $vr*2;
+
+  tbody tr{
+
+    td{
+      &:first-child{
+        padding: $vr*1.5 0 $vr*1.5 $vr*1.5;
+      }
+      &:not(:first-child):not(:last-child){
+        padding: $vr*1.5 0;
+      }
+      &:last-child{
+        padding: $vr*1.5 $vr*1.5 $vr*1.5 0;
+      }
+    }
+
+    &:not(:last-of-type){
+      border-bottom: 1px solid clr(gray);
+    }
+  }
+
+  tfoot,
+  thead{
+    border-bottom: 1px solid clr(gray);
+
+    tr{
+      font-size: 12px;
+      line-height: 14px;
+      color: clr(gray-darker);
+      text-transform: uppercase;
+
+      // If there is only one th
+      th:nth-last-child(-n+1):first-child, th:nth-last-child(-n+1):first-child ~ th {
+        padding: $vr;
+      }
+      // If there is more than one th
+      th:nth-last-child(n+2), th:nth-last-child(n+2) ~ th {
+        text-align: left;
+
+        &:first-child{
+          padding: $vr*1.5 0 $vr*1.5 $vr*1.5;
+        }
+        &:not(:first-child):not(:last-child){
+          padding: $vr*1.5 0;
+        }
+        &:last-child{
+          padding: $vr*1.5 $vr*1.5 $vr*1.5 0;
+        }
+      }
+      th{
+        font-weight: 400;
+      }
+    }
+  }
+
+  &.stripped{
+    border: none;
+
+    tbody tr{
+      &:nth-of-type(odd){ background: clr(gray-lighter); }
+
+      td{
+        &:first-child{
+          padding: $vr*0.75 $vr $vr*0.75 $vr;
+        }
+        &:not(:first-child):not(:last-child){
+          padding: $vr*0.75 $vr;
+        }
+        &:last-child{
+          padding: $vr*0.75 $vr $vr*0.75 $vr;
+          font-weight: 700;
+        }
+
+        @media #{$md}{
+          &:first-child{
+            padding: $vr*0.75 0 $vr*0.75 $vr*2;
+          }
+          &:not(:first-child):not(:last-child){
+            padding: $vr*0.75 0;
+          }
+          &:last-child{
+            padding: $vr*0.75 $vr*2 $vr*0.75 0;
+          }
+        }
+      }
+
+      &:not(:last-of-type){ border: none; }
+    }
+
+/*---
+title:   Table stripped
+name:    table-stripped
+section: Table
+---
+
+Tables can be stripped
+
+```example:html
+<table class="stripped">
+  <tr>
+    <td>Col 1</td>
+    <td><a href="#x">Col 2</a></td>
+  </tr>
+  <tr>
+    <td>Col 1</td>
+    <td>Col 2</td>
+  </tr>
+  <tr>
+    <td>Col 1</td>
+    <td>Col 2</td>
+  </tr>
+  <tr>
+    <td>Col 1</td>
+    <td>Col 2</td>
+  </tr>
+  <tr>
+    <td>Col 1</td>
+    <td>Col 2</td>
+  </tr>
+  <tr>
+    <td>Col 1</td>
+    <td>Col 2</td>
+  </tr>
+</table>
+```
+*/
+  }
+
+  &.responsive{
+    @media #{$sm-only}{
+      thead{
+        display: none;
+      }
+      td,
+      th{
+        padding: 0;
+      }
+      tbody{
+        // border-top: 1px solid clr(gray-dark);
+
+        tr{
+          padding: $vr;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          // border-right: 2px solid clr(gray-light);
+
+          td{
+            text-align: left;
+            padding: $vr;
+
+            &[data-header]{
+              display: flex;
+              flex-direction: column;
+
+              &:before{
+                display: block;
+                content: attr(data-header);
+                text-align: left;
+                font-weight: 700;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.cart{
+      @media #{$sm-only}{
+        tbody{
+          tr{
+            position: relative;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1.5rem 1.5rem 3rem 1.5rem;
+
+            td:first-of-type{
+              flex: 0 0 100%;
+              padding: 0;
+
+              + td{
+                justify-content: center;
+                align-items: center;
+              }
+            }
+            td:not(:first-of-type){
+              flex: 0 0 33%;
+              max-width: 33%;
+              padding-top: 2rem;
+              padding-left: 0;
+              padding-right: 0;
+              padding-bottom: 3rem;
+            }
+            td[data-header]:before{
+              color: clr(gray-dark);
+              font-size: 9px;
+              line-height: 10px;
+              text-transform: uppercase;
+              margin-bottom: 1rem;
+            }
+            td:nth-of-type(2){
+              padding-top: 2rem;
+            }
+            .cart-item__remove{
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: clr(gray-lighter);
+              border-top: 1px solid clr(gray-light);
+
+              a{ width: 100%; }
+            }
+          }
+        }
+      }
+      tbody tr{
+        td{
+          transition: all $anim-duration*2 $anim-easing;
+          > *{
+            transition: all $anim-duration*2 $anim-easing;
+            overflow: hidden;
+            display: block;
+            max-height: 15rem;
+          }
+        }
+      }
+      tbody tr.delete{
+        td{
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+          > *{
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+          }
+        }
+      }
+    }
+/*---
+title:   Table responsive
+name:    table-responsive
+section: table
+---
+
+But they can be responsive too =D
+
+```example:html
+<table class="responsive">
+  <thead>
+    <tr>
+      <th>Col 1</th>
+      <th>Col 2</th>
+      <th class="table-responsive-hide">Hidden on small</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Col 1</td>
+      <td>Col 2</td>
+      <td>Header hidden on small</td>
+      <td>No header</td>
+    </tr>
+    <tr>
+      <td>Col 1</td>
+      <td>Col2</td>
+
+      <td>Header hidden on small</td>
+      <td>No header</td>
+    </tr>
+    <tr>
+      <td>Col 1</td>
+      <td>Col 2</td>
+
+      <td>Header hidden on small</td>
+      <td>No header</td>
+    </tr>
+    <tr>
+      <td>Col 1</td>
+      <td>Col 2</td>
+
+      <td>Header hidden on small</td>
+      <td>No header</td>
+    </tr>
+    <tr>
+      <td>Col 1</td>
+      <td>Col 2</td>
+
+      <td>Header hidden on small</td>
+      <td>No header</td>
+    </tr>
+    <tr>
+      <td>Col 1</td>
+      <td>Col 2</td>
+
+      <td>Header hidden on small</td>
+      <td>No header</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="4">The footer</th>
+    </tr>
+  </tfoot>
+</table>
+```
+*/
+  }
+}
+
+table.quotes__account{
+  // width: 100%;
+  // max-width: 1081px;
+  border-collapse: collapse;
+  // border-top: 1px solid red;
+
+  $head-sm: 100% 50% 50% 50% 50% 100%;
+  $head-md: 22% 18% 17% 16% 0% 27%;
+  $head-lg: 20% 14% 15% 13% 18% 20%;
+
+  thead tr,
+  tbody tr{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    // border: 1px solid green;
+    border-top: none;
+
+    td,
+    th{
+      text-align: left;
+
+      &:not(:first-of-type):not(:last-of-type){
+        padding: 3rem 0rem 3rem 1rem !important;
+      }
+      &:first-of-type{
+        padding: 3rem 1rem 3rem 3rem !important;
+      }
+      &:last-of-type{
+        padding: 3rem 3rem 3rem 1rem !important;
+      }
+
+      @for $i from 1 through length($head-lg) {
+        $size: nth($head-lg, $i);
+
+        &:nth-child(#{$i}) {
+          width: $size;
+          flex: 0 0 $size;
+          max-width: $size;
+        }
+      }
+    }
+    td.sub{
+      flex: 0 0 100%;
+      padding: 0;
+
+      div{
+        background: clr(gray-lighter);
+        padding: 2rem;
+      }
+    }
+  }
+
+  @media #{$md-only}{
+    thead tr,
+    tbody tr{
+      td,
+      th{
+        @for $i from 1 through length($head-md) {
+          $size: nth($head-md, $i);
+
+          &:nth-child(#{$i}) {
+            @if($i == 5){
+              display: none;
+            }
+            @else{
+              width: $size;
+              flex: 0 0 $size;
+              max-width: $size;
+            }
+          }
+        }
+        &:nth-child(5) {
+          display: none;
+        }
+        &:last-of-type{
+          padding-right: 1rem;
+        }
+      }
+    }
+  }
+  @media #{$sm-only}{
+    > thead > tr,
+    > tbody > tr{
+      flex-direction: row;
+      > td,
+      > th{
+
+        &:not(:first-of-type):not(:last-of-type){
+          padding: 1rem !important;
+        }
+        &:first-of-type{
+          padding: 1rem !important;
+        }
+        &:last-of-type{
+          padding: 1rem !important;
+        }
+
+        @for $i from 1 through length($head-sm) {
+          $size: nth($head-sm, $i);
+
+          &:nth-child(#{$i}) {
+            width: $size;
+            flex: 0 0 $size;
+            max-width: $size;
+          }
+        }
+        &.sub{
+          div{
+            padding: 0.5rem 2rem;
+          }
+          &:before{ display: none; }
+          table tbody tr{
+            display: flex;
+            flex-direction: row;
+            padding: 0 !important;
+
+            td{
+              width: 50%;
+              max-width: 50%;
+              flex: 0 0 50%;
+
+              padding-top: 1rem !important;
+              padding-bottom: 1rem !important;
+
+              &:first-of-type{ padding-left: 0 !important; }
+              &:last-of-type{ padding-right: 0 !important; }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+table.quote__status{
+  border: none;
+  margin-bottom: 0;
+
+  thead{
+    tr th{
+      color: clr(gray-darker);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      padding: 1rem !important;
+    }
+  }
+
+  tbody{
+    tr{
+      border: none !important;
+      color: clr(gray-darker);
+      font-size: 1.3rem;
+      line-height: 1.15;
+
+      td{
+        padding: 1rem !important;
+      }
+    }
+    tr + tr{
+      border-top: 1px solid clr(gray) !important;
+    }
+  }
+
+  @media #{$sm-only}{
+    tbody{
+      tr{
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: row;
+
+        td{
+          width: 50%;
+          max-width: 50%;
+          flex: 0 0 50%;
+        }
+      }
+    }
+  }
+}

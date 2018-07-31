@@ -1,0 +1,22 @@
+@import "../../assets/scss/helpers/variables";
+@import "../../assets/scss/helpers/mixins";
+
+.sg{
+  .row > [class*='column-']:not(.no-white){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: $vr*2;
+    padding: $vr;
+    background: clr(white);
+    border-radius: $global-radius;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.16);
+
+    > * + * {
+      margin-top: $vr;
+      padding-top: $vr;
+      border-top: 1px solid clr(gray-lighter);
+    }
+  }
+}

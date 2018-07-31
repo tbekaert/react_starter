@@ -1,0 +1,75 @@
+//
+//  C O M M O N S
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+*{
+  outline: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  @extend .text;
+  color: clr(black);
+  overflow-x: hidden;
+  background: clr(gray-lighter);
+
+  // @media #{$sm-only}{ background: rgba(#00f, 0.25); }
+  // @media #{$md-only}{ background: rgba(#0f0, 0.25); }
+  // @media #{$lg}{ background: rgba(#f00, 0.25); }
+}
+
+body > div,
+body > div > main{
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/*---
+title:   HR
+name:    hr
+section: Others
+---
+
+```example:html
+<hr>
+```
+*/
+hr{
+  margin: 2rem auto;
+  border: none;
+  height: 1px;
+  width: 100%;
+  background-color: clr(primary-light);
+}
+
+img{
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// [id*="js-"]:not(.muted){
+//   cursor: pointer;
+// }
+
+// input[type="checkbox"][id*="toggle-"]{
+//   background: red;
+// }

@@ -1,0 +1,205 @@
+//
+//  G R I D
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+.row{
+  position: relative;
+  margin: 0 auto;
+  max-width: $row-width;
+  width: $container-width;
+  display: flex;
+  // alignment
+  justify-content: flex-start;
+  align-items: stretch;
+  // Wrap
+  flex-wrap: wrap;
+}
+
+[class*="column-"]{
+  display: flex;
+  flex-direction: column;
+
+  &, &:not(.no-width) > *{
+    width: 100%;
+    max-width: 100%;
+  }
+  &:not(.nest){
+    padding-left: $column-gutter/2;
+    padding-right: $column-gutter/2;
+
+    @media #{$sm-only}{
+      padding-left: $column-gutter/4;
+      padding-right: $column-gutter/4;
+    }
+  }
+}
+.columns-padding{
+  padding-left: $column-gutter/2;
+  padding-right: $column-gutter/2;
+
+  @media #{$sm-only}{
+    padding-left: $column-gutter/4;
+    padding-right: $column-gutter/4;
+  }
+}
+
+// Create selectors for each media query
+@each $bp in $bps {
+  // get name and prefix of media query
+  $key: nth($bp, 1);
+  $value: nth($bp, 2);
+
+  @include inMedia($key){
+    @include selector('.flex', $value){ display: flex; }
+    @include selector('.inl-flex', $value){ display: inline-flex; }
+
+    // grid classes
+    @for $i from 1 through $total-columns{
+      $column-width-percent : (100% * ($i*($column-width+$column-gutter))) / $row-width;
+
+      @include selector('.column-#{$i}', $value){
+        width: $column-width-percent;
+        max-width: $column-width-percent;
+        flex: 0 0 $column-width-percent;
+      }
+      @include selector('.order-#{$i}', $value){ order: $i; }
+      @if $i < $total-columns{
+        @include selector('.offset-#{$i}', $value){
+          margin-left: $i*$column-width-percent;
+        }
+      }
+    }
+
+    //  Global sizing
+    //  ───────────────────────────────────
+    @for $i from 1 through 20{
+      @include selector('.size-#{$i * 5}p', $value){ width: $i * 5%; max-width: $i * 5%; }
+    }
+    @include selector('.size-33p', $value){ width: 33.333333%; max-width: 33.333333%; }
+    @include selector('.size-66p', $value){ width: 66.666666%; max-width: 66.666666%; }
+    @include selector('.size-49p', $value){ width: 49%; max-width: 49%; }
+    @include selector('.size-auto', $value){ width: auto; max-width: auto; }
+    @for $i from 1 through 20{
+      @include selector('.w-#{$i}', $value){ width: $i * 0.8rem; max-width: $i * 0.8rem; flex: 0 0 $i * 0.8rem; }
+      @include selector('.h-#{$i}', $value){ height: $i * 0.8rem; }
+    }
+
+    //  Alignment
+    //  ───────────────────────────────────
+    @include selector('.align-start-start', $value) {
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    @include selector('.align-start-end', $value) {
+      justify-content: flex-start;
+      align-items: flex-end;
+    }
+    @include selector('.align-start-center', $value) {
+      justify-content: flex-start;
+      align-items: center;
+    }
+    @include selector('.align-start-stretch', $value) {
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+
+    @include selector('.align-end-start', $value) {
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+    @include selector('.align-end-end', $value) {
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    @include selector('.align-end-center', $value) {
+      justify-content: flex-end;
+      align-items: center;
+    }
+    @include selector('.align-end-stretch', $value) {
+      justify-content: flex-end;
+      align-items: stretch;
+    }
+
+    @include selector('.align-center-start', $value) {
+      justify-content: center;
+      align-items: flex-start;
+    }
+    @include selector('.align-center-end', $value) {
+      justify-content: center;
+      align-items: flex-end;
+    }
+    @include selector('.align-center-center', $value) {
+      justify-content: center;
+      align-items: center;
+    }
+    @include selector('.align-center-stretch', $value) {
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    @include selector('.align-spacebetween-start', $value) {
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    @include selector('.align-spacebetween-end', $value) {
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    @include selector('.align-spacebetween-center', $value) {
+      justify-content: space-between;
+      align-items: center;
+    }
+    @include selector('.align-spacebetween-stretch', $value) {
+      justify-content: space-between;
+      align-items: stretch;
+    }
+
+    @include selector('.align-spacearound-start', $value) {
+      justify-content: space-around;
+      align-items: flex-start;
+    }
+    @include selector('.align-spacearound-end', $value) {
+      justify-content: space-around;
+      align-items: flex-end;
+    }
+    @include selector('.align-spacearound-center', $value) {
+      justify-content: space-around;
+      align-items: center;
+    }
+    @include selector('.align-spacearound-stretch', $value) {
+      justify-content: space-around;
+      align-items: stretch;
+    }
+
+    //  Direction
+    //  ───────────────────────────────────
+    @include selector('.layout-column', $value) { flex-direction: column; }
+    @include selector('.layout-columnreverse', $value) { flex-direction: column-reverse; }
+    @include selector('.layout-row', $value) { flex-direction: row; }
+    @include selector('.layout-rowreverse', $value) { flex-direction: row-reverse; }
+
+    //  Wrap
+    //  ───────────────────────────────────
+    @include selector('.layout-wrap', $value) { flex-wrap: wrap; }
+    @include selector('.layout-nowrap', $value) { flex-wrap: nowrap; }
+
+    //  Others
+    //  ───────────────────────────────────
+    @include selector('.flex-full', $value) { flex: 0 0 100%; }
+    @include selector('.flex-grow', $value) { flex: 1 1 100%; }
+    @include selector('.flex-initial', $value) { flex: 0 1 auto; }
+    @include selector('.flex-auto', $value) { flex: 1 1 auto; }
+    @include selector('.flex-none', $value) { flex: 0 0 auto; }
+    @include selector('.layout-fill', $value) {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+    }
+    @include selector('.dp-block', $value){ display: block; }
+    @include selector('.dp-inlblock', $value){ display: inline-block; }
+    @include selector('.dp-inl', $value){ display: inline; }
+    @include selector('.dp-none', $value){ display: none; }
+  }
+}

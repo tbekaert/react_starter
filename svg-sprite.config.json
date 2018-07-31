@@ -1,0 +1,16 @@
+{
+  "dest": "src/assets/svg",
+  "shape": {
+      "id": {
+          "generator": "icon-%s"
+      }
+  },
+  "mode": {
+    "symbol": {
+        "dest": "",
+        "prefix": ".icon-%s",
+        "sprite": "sprite.svg",
+        "inline": true
+    }
+  }
+}

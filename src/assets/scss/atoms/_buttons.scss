@@ -1,0 +1,245 @@
+//
+//  B U T T O N S
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+.button{
+  padding: 1rem 3.3rem 1.1rem;
+  transition: background $anim,
+              border $anim,
+              color $anim,
+              opacity $anim;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.14;
+  box-shadow: none;
+  border-radius: 0;
+  text-align: center;
+  border-radius: $vr;
+
+  //  Size
+  //  ───────────────────────────────────
+  /*---
+  title:   Size
+  name:    size-button
+  section: Buttons
+  ---
+
+  Button styles can be applied to any element (excepted `.tertiary` wich can't be used with self-closing HTML attributes like input).
+  Typically you'll want to use either a `<button>` or an `<a>` element:
+
+  ```example:html
+  <input type="submit" class="button primary small" value="Button cta" />
+  <button class="button primary">Button primary</button>
+  <a class="button primary large" href="#x">Button secondary</a>
+  ```
+  */
+
+  &.with-icon{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    
+    svg{
+      width: 1.2rem;
+      height: 1.2rem;
+      
+      + span{ margin-left: 1rem; }
+    }
+  }
+  
+  &.small{
+    font-size: 1.2rem;
+    line-height: 1.333333;
+    padding: 0.8rem 2rem;
+    border-radius: 3.2rem;
+
+    &.with-icon{
+      svg{
+        width: 1.2rem;
+        height: 1.2rem;
+
+        + span{ margin-left: 1rem; }
+      }
+    }
+  }
+  &.large{
+    padding: 1.5rem 4rem 1.7rem;
+    border-radius: 4.8rem;
+
+    &.with-icon{
+      padding: 1.2rem 2rem;
+
+      svg{
+        width: 2.4rem;
+        height: 2.4rem;
+
+        + span{ margin-left: 1.2rem; }
+      }
+    }
+  }
+
+  //  Colors
+  //  ───────────────────────────────────
+  /*---
+  title:   Colors
+  name:    colors-button
+  section: Buttons
+  ---
+
+  Button styles can be applied to any element (excepted `.tertiary` wich can't be used with self-closing HTML attributes like input).
+  Typically you'll want to use either a `<button>` or an `<a>` element:
+
+  ```example:html
+  <input type="submit" class="button cta" value="Button cta" />
+  <button class="button primary">Button primary</button>
+  <a class="button secondary" href="#x">Button secondary</a>
+  <button class="button tertiary">Button tertiary</button>
+  ```
+  */
+  &.primary{
+    color: clr(white);
+    border: 1px solid clr(primary);
+    background: clr(primary);
+
+    &.light{
+      color: clr(primary);
+      border: 1px solid clr(primary-light);
+      background: clr(primary-light);
+    }
+
+    &:not(.disabled):not([disabled]){
+      &:hover,
+      &:focus,
+      &:active{
+        color: clr(white);
+        border-color: clr(primary-dark);
+        background: clr(primary-dark);
+      }
+    }
+  }
+
+  &.cancel{
+    border-color: transparent;
+    background: transparent;
+    color: clr(alert);
+
+    &:not(.disabled):not([disabled]){
+      &:hover,
+      &:focus,
+      &:active{
+        color: clr(white);
+        border-color: clr(gray);
+        background: clr(gray);
+      }
+    }
+  }
+
+  &.outline{
+    background: clr(white);
+    border: 1px solid clr(gray-light);
+    color: clr(black);
+
+    &:not(.disabled):not([disabled]){
+      &:hover,
+      &:focus,
+      &:active{
+        border-color: clr(primary);
+        color: clr(primary);
+      }
+    }
+
+    &.gray-dark{
+      background: clr(white);
+      border: 1px solid clr(gray-light);
+      color: clr(black);
+
+      &:not(.disabled):not([disabled]){
+        &:hover,
+        &:focus,
+        &:active{
+          border-color: clr(gray-dark);
+          color: clr(white);
+          background: clr(gray-dark);
+        }
+      }
+    }
+    &.primary{
+      background: clr(white);
+      border: 1px solid clr(primary);
+      color: clr(primary);
+
+      &:not(.disabled):not([disabled]){
+        &:hover,
+        &:focus,
+        &:active{
+          border-color: clr(primary);
+          background: clr(primary);
+          color: clr(white);
+        }
+      }
+    }
+  }
+
+  //  Disabled
+  //  ───────────────────────────────────
+  /*---
+  title:   Disabled
+  name:    disabled-button
+  section: Buttons
+  ---
+
+  Buttons can also be used as call to action:
+
+  ```example:html
+  <button class="button cta disabled">Button cta</button>
+  <button class="button primary disabled">Button primary</button>
+  <a class="button secondary disabled" href="#x">Button secondary</a>
+  <a class="button tertiary disabled" href="#x">Button tertiary</a>
+  ```
+  */
+  &.disabled,
+  &[disabled]{
+    opacity: 0.4;
+    text-shadow: 0 0 0 transparent;
+    box-shadow: 0 0 0 0 transparent;
+    cursor: default;
+  }
+}
+
+
+.button-group{
+  display: inline-flex;
+  justify-content: start;
+  align-items: stretch;
+
+  &.gray{ --color: #{clr(gray)}; }
+  &.gray-dark{ --color: #{clr(gray-dark)}; }
+  &.gray-darker{ --color: #{clr(gray-darker)}; }
+
+  .button{
+    color: var(--color);
+    border: 1px solid var(--color);
+
+    &.active{
+      background: var(--color);
+      color: clr(white);
+    }
+  }
+
+  .button:not(:first-of-type){
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+  .button:not(:last-of-type){
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+  }
+}

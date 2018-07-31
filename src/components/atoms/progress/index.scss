@@ -1,0 +1,110 @@
+@import "../../../assets/scss/helpers/variables";
+@import "../../../assets/scss/helpers/mixins";
+
+.progress{
+  $self: &;
+  position: relative;
+  
+  &--linear{
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    @media #{$md}{
+      flex-direction: row;
+    }
+    
+    #{$self}__indicator{
+      position: relative;
+      width: 100%;
+      flex: 1 1 auto;
+      border: 1px solid clr(success);
+      height: $vr/2;
+      border-radius: $global-radius;
+
+      &:after{
+        content: '';
+        position: absolute; 
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: clr(success);
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform $anim-duration*2 $anim-easing;
+      }
+
+      @media #{$md}{
+        flex: 1 1 auto;
+        width: auto;
+      }
+    }
+  
+    #{$self}__text{
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: right;
+      color: clr(success);
+
+      @media #{$md}{
+        flex: 0 0 5rem;
+      }
+    }
+    &.animate #{$self}__indicator:after{
+      transform: scaleX(var(--value));
+    }
+  }
+  &--round{
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    max-width: var(--baseWidth);
+
+    &:before{
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+    #{$self}__indicator{
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      path{
+        fill: none;
+      }
+      &__bg{ stroke: rgba(clr(success), 0.2); }
+      &__value{
+        stroke: clr(success);
+        stroke-dashoffset: var(--strokeLength);
+        stroke-dasharray: var(--strokeLength);
+        transition: stroke-dashoffset $anim-duration*4 $anim-easing;
+      }
+    }
+    #{$self}__text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      font-size: 1.6rem;
+      line-height: 1.25;
+      font-weight: 700;
+      text-align: right;
+      color: clr(success);
+
+      sup{
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+    }
+
+    &.animate #{$self}__indicator__value{
+      stroke-dashoffset: var(--strokeValue);
+    }
+  }
+}

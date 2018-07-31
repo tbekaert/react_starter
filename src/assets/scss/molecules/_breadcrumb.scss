@@ -1,0 +1,40 @@
+//
+//  B R E A D C R U M B
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+//  Breadcrumb
+//  ───────────────────────────────────
+/*---
+title:   Breadcrumb
+name:    breadcrumb
+---
+
+```example:html
+<ul class="breadcrumb">
+  <li class="flex-none"><a href="{{ global.link.hoome }}">Accueil</a></li>
+  <li class="flex-none"><span>La chambre</span></li>
+</ul>
+```
+*/
+
+.breadcrumb{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  li{
+    &:not(:first-of-type):before{
+      content: "⟶";
+      position: relative;
+      padding: 0 1rem;
+    }
+  }
+  span{
+    color: clr(gray-darker);
+  }
+
+  @media #{$sm-only}{
+    flex-direction: column;
+  }
+}

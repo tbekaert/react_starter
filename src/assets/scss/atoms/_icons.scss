@@ -1,0 +1,61 @@
+//
+//  I C O N S
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+svg{
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.icon-bg {
+  display: block;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+@svg-load arrow-primary url(assets/svg/partials/arrow.svg) {
+  path, rect, polygon, circle{ fill: #{clr(primary)} }
+}
+.icon-bg.arrow { background-image: svg-inline(arrow-primary) }
+
+/*---
+title:   Icons
+name:    icons
+---
+
+```example:html
+<div>
+  <svg class="icon big"><use xlink:href="#icon-account" /></svg>
+  <svg class="icon big"><use xlink:href="#icon-arrow_down" /></svg>
+  <svg class="icon big"><use xlink:href="#icon-arrow_left_slider" /></svg>
+  <svg class="icon big"><use xlink:href="#icon-arrow_right_slider" /></svg>
+  <svg class="icon big"><use xlink:href="#icon-cart" /></svg>
+</div>
+
+<div>
+  <svg class="icon small alert"><use xlink:href="#icon-close" /></svg>
+  <svg class="icon warning"><use xlink:href="#icon-in_progress" /></svg>
+  <svg class="icon big info"><use xlink:href="#icon-phone" /></svg>
+  <svg class="icon big success"><use xlink:href="#icon-favoris" /></svg>
+</div>
+
+<div>
+  <svg class="icon big gray-lighter"><use xlink:href="#icon-close" /></svg>
+  <svg class="icon big gray-light"><use xlink:href="#icon-close" /></svg>
+  <svg class="icon big gray"><use xlink:href="#icon-close" /></svg>
+  <svg class="icon big gray-dark"><use xlink:href="#icon-close" /></svg>
+  <svg class="icon big gray-darker"><use xlink:href="#icon-close" /></svg>
+</div>
+
+<div>
+  <span class="icon-bg close-primary small"></span>
+  <span class="icon-bg close-secondary"></span>
+  <span class="icon-bg close-alert big"></span>
+</div>
+```
+*/

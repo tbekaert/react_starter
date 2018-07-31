@@ -1,0 +1,43 @@
+@import "../../../assets/scss/helpers/variables";
+@import "../../../assets/scss/helpers/mixins";
+
+@import "../../../assets/scss/helpers/variables";
+@import "../../../assets/scss/helpers/mixins";
+
+.prompt{
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(clr(white), 0.8);
+  opacity: 0;
+  transition: opacity $anim-duration*2 $anim-easing $anim-duration;
+
+  &__inner{
+    width: calc(100vw - #{$vr});
+    max-width: 50rem;
+    margin-top: $vr*2;
+    transform: translateY(calc(-100% - #{$vr*2}));
+    opacity: 0;
+    transition: opacity $anim-duration*2 $anim-easing,
+                transform $anim-duration*2 $anim-easing;
+  }
+
+  &:not(.show){ pointer-events: none; }
+  &.show{
+    opacity: 1;
+    transition: opacity $anim-duration*2 $anim-easing;
+
+    .prompt__inner{
+      transform: translateY(0);
+      opacity: 1;
+      transition: opacity $anim-duration*2 $anim-easing $anim-duration,
+                  transform $anim-duration*2 $anim-easing $anim-duration;
+    }
+  }
+}

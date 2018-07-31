@@ -1,0 +1,83 @@
+@import "../../../assets/scss/helpers/variables";
+@import "../../../assets/scss/helpers/mixins";
+
+.popin{
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(clr(primary), 0.8);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity $anim-duration $anim-easing $anim-duration*0.75,
+              transform $anim-duration*2 $anim-easing $anim-duration*0.75;
+
+  &.bg-white{
+    background: rgba(clr(white), 0.8);
+  }
+
+  > *{ opacity: 0; }
+
+  &__inner{
+    position: relative;
+    max-height: calc(100vh - #{$vr*2});
+    width: calc(100% - #{$vr*2});
+    max-width: $row-width;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: $vr*2;
+    background: #fff;
+    border-radius: $global-radius;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.16);
+    transform: scale(1.1);
+    transition: opacity $anim-duration*1.5 $anim-easing,
+                transform $anim-duration*2 $anim-easing;
+  }
+  .close{
+    position: fixed;
+    top: $vr;
+    right: $vr;
+    cursor: pointer;
+    box-shadow: 0 0px 0px rgba(0,0,0,0);
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+    transition: box-shadow $anim-duration*2 $anim-easing,
+                color $anim-duration*2 $anim-easing,
+                background $anim-duration*2 $anim-easing,
+                opacity $anim-duration*2 $anim-easing;
+
+    svg{ pointer-events: none; }
+
+    &:hover{
+      box-shadow: 0 2px 24px 0 rgba(0,0,0,0.16);
+      color: clr(primary);
+      background: white;
+    }
+  }
+  &.show{
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity $anim-duration $anim-easing $anim-duration,
+                transform $anim-duration*2 $anim-easing;
+
+    .popin__inner{
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity $anim-duration*2 $anim-easing $anim-duration*1,
+                  transform $anim-duration*2 $anim-easing $anim-duration*1;
+    }
+    .close{
+      opacity: 1;
+      transition: box-shadow $anim-duration*2 $anim-easing,
+                  color $anim-duration*2 $anim-easing,
+                  background $anim-duration*2 $anim-easing,
+                  opacity $anim-duration*2 $anim-easing $anim-duration*1.5;
+    }
+  }
+}

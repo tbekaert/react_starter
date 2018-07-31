@@ -1,0 +1,47 @@
+@import "../../assets/scss/helpers/variables";
+@import "../../assets/scss/helpers/mixins";
+
+
+.count{
+  position: relative;
+  display: flex;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-top: 1px solid clr(gray-light);
+  border-bottom: 1px solid clr(gray-light);
+  text-align: center;
+  line-height: 3.0rem;
+  font-weight: 700;
+  overflow: hidden;
+
+  span{
+    flex: 0 0 3.2rem;
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  &-enter{
+    transition: transform $anim-duration $anim-easing;
+
+    &.incrementing{ transform: translateX(3.2rem); }
+    &.decrementing{ transform: translateX(-3.2rem); }
+
+    &-active[class]{
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  &-exit{
+    position: absolute;
+    left: 0; top: 0;
+    transform: translateX(0);
+    transition: transform $anim-duration $anim-easing;
+
+    &-active.incrementing{
+      transform: translateX(-3.2rem);
+    }
+    &-active.decrementing{
+      transform: translateX(3.2rem);
+    }
+  }
+}

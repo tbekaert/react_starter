@@ -1,0 +1,285 @@
+//
+//  V A R I A B L E S
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+//  Colors
+//  ───────────────────────────────────
+
+@function clr($key){
+  @return map-get($colors, $key);
+}
+
+$colors: ();
+
+$colors: map-merge((
+  primary-light: #c3fae8,
+  primary: #12b886,
+  primary-dark: #099268,
+), $colors);
+
+$colors: map-merge((
+  orange: #ff922b,
+  yellow: #fcc419,
+  coral: #ff6b6b,
+  pink: #f06595,
+  purple: #cc5de8,
+  teal: #20c997,
+  turquoise: #22b8cf
+), $colors);
+/*---
+  title:   Brand
+  name:    brand-colors
+  order:    1
+  section: design_colors
+  ---
+  ```example:color
+  @color: #{clr(primary-light)} @name: primary-light
+  @color: #{clr(primary)} @name: primary
+  @color: #{clr(primary-dark)} @name: primary-dark
+  ```
+  ```example:color
+  line 7
+  @color: #{clr(orange)} @name: orange
+  @color: #{clr(yellow)} @name: yellow
+  @color: #{clr(coral)} @name: coral
+  @color: #{clr(pink)} @name: pink
+  @color: #{clr(purple)} @name: purple
+  @color: #{clr(teal)} @name: teal
+  @color: #{clr(turquoise)} @name: turquoise
+  ```
+*/
+
+$colors: map-merge((
+  alert: #e03131,
+  success: #2f9e44,
+), $colors);
+/*---
+  title:   Alert
+  name:    alert-colors
+  section: Colors
+  ---
+
+  In order to use any color, just use function `clr(name-of-color)`
+
+  ```example:color
+  line 2
+  @color: #{clr(alert)} @name: alert
+  @color: #{clr(success)} @name: success
+  ```
+*/
+
+$colors: map-merge((
+  gray-lighter: #f1f3f5,
+  gray-light: #dee2e6,
+  gray: #adb5bd,
+  gray-dark: #868e96,
+  gray-darker: #495057
+), $colors);
+/*---
+  title:   Gray
+  name:    gray-colors
+  section: Colors
+  ---
+
+  In order to use any color, just use function `clr(name-of-color)`
+
+  ```example:color
+  line 4
+  @color: #{clr(gray-light)} @name: gray-light
+  @color: #{clr(gray)} @name: gray
+  @color: #{clr(gray-dark)} @name: gray-dark
+  @color: #{clr(gray-darker)} @name: gray-darker
+  ```
+*/
+
+$colors: map-merge((
+  black: #000000,
+  white: #ffffff
+), $colors);
+/*---
+  title:   Others
+  name:    others-colors
+  section: Colors
+  ---
+
+  In order to use any color, just use function `clr(name-of-color)`
+
+  ```example:color
+  @color: #{clr(white)} @name: white
+  ```
+  ```example:color
+  @color: #{clr(black)} @name: black
+  ```
+*/
+
+//  Fonts
+//  ───────────────────────────────────
+/*---
+  title:   Fonts
+  name: fonts
+  section: Variables
+  ---
+
+  ```css
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-feature-settings: "kern", "liga", "pnum";
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: clr(black);
+  ```
+*/
+
+//  Animations
+//  ───────────────────────────────────
+/*---
+  title:   Animation duration/easing
+  name: animation
+  section: Variables
+  ---
+
+  Use this for animation timing and easing. You can either use the shorthand `$anim` or directly use `$anim-duration` and `$anim-easing` for fine tuning.
+
+  ```
+  $anim-duration: 250ms;
+  $anim-easing: cubic-bezier(.55,0,.1,1) ;
+  $anim: $anim-duration $anim-easing;
+  ```
+*/
+$anim-duration: 250ms;
+$anim-easing: cubic-bezier(.55,0,.1,1) ;
+$anim: $anim-duration $anim-easing;
+
+//  Grid
+//  ───────────────────────────────────
+/*---
+  title:   Vertical rythmn
+  name:    vertical-rythmn-grid
+  section: Grid
+  ---
+
+  Use `$vr` in order to keep vertical rythmn accross the entire project.
+
+  ```
+  $vr: 2rem;
+  ```
+*/
+$vr: 2rem;
+
+//  Grid
+//  ───────────────────────────────────
+/*---
+  title:   Grid size
+  name:    size-grid
+  section: Grid
+  ---
+
+  ```
+  $row-width: 144rem;
+  $container-width: 100%;
+  $total-columns: 12;
+  $column-gutter: 4rem;
+  $column-width: 8rem;
+  ```
+*/
+$row-width: 96rem;
+$container-width: 100%;
+$total-columns: 12;
+$column-gutter: 4rem;
+$column-width: 4rem;
+
+/*---
+  title:   Debug grid
+  name: debgrid
+  section: Variables
+  ---
+
+  Update this scss map to configure debgrid in order to display overlay debug grid in your project.
+
+  ```
+  $debgrid: (
+    horizontal: false,
+    maxwidth: $row-width,
+    width: $container-width,
+    columns: $total-columns,
+    gutter: $column-gutter,
+    colorColumn: rgba(clr(gray-darker), 0.1),
+    colorGutter: rgba(clr(gray-darker), 0.05),
+    vertical: false,
+    vertical-size: $vr,
+    colorVOdd: rgba(clr(gray-darker), 0.1),
+    colorVEven: transparent
+  );
+  ```
+*/
+$debgrid: (
+  horizontal: false,
+  maxwidth: $row-width,
+  width: $container-width,
+  columns: $total-columns,
+  gutter: $column-gutter,
+  colorColumn: rgba(clr(gray-darker), 0.1),
+  colorGutter: rgba(clr(gray-darker), 0.05),
+  vertical: false,
+  vertical-size: $vr,
+  colorVOdd: rgba(clr(gray-darker), 0.1),
+  colorVEven: transparent
+);
+
+//  Breakpoints
+//  ───────────────────────────────────
+/*---
+  title:   Breakpoints
+  name: breakpoints
+  section: Variables
+  ---
+
+  We have 3 main breakpoints based on Foundation and usefull in mobile first development.
+
+  `$sm` is used for style for mobile, tablet and desktop (equals to no media query)
+
+  `$md` is used for style for tablet and desktop `(min-width: 641px)`
+
+  `$lg` is used for style for desktop only `(min-width: 1025px)`
+*/
+$sm-breakpoint:  640px;
+$md-breakpoint: 1024px;
+$lg-breakpoint: 1440px;
+
+$sm-range:   (0, $sm-breakpoint);
+$md-range:  ($sm-breakpoint  + 1px, $md-breakpoint);
+$lg-range:   ($md-breakpoint + 1px, $lg-breakpoint);
+
+$sm-only: "(max-width: #{nth($sm-range, 2)})";
+
+$md-up: "(min-width:#{nth($md-range, 1)})";
+$md-only: "(min-width:#{nth($md-range, 1)}) and (max-width:#{nth($md-range, 2)})";
+
+$lg-up: "(min-width:#{nth($lg-range, 1)})";
+$lg-only: "(min-width:#{nth($lg-range, 1)}) and (max-width:#{nth($lg-range, 2)})";
+
+$retina: (
+  "(-webkit-min-device-pixel-ratio: 2)",
+  "(min--moz-device-pixel-ratio: 2)",
+  "(-o-min-device-pixel-ratio: 2/1)",
+  "(min-device-pixel-ratio: 2)",
+  "(min-resolution: 192dpi)",
+  "(min-resolution: 2dppx)"
+);
+
+// Legacy
+$md: $md-up;
+$lg: $lg-up;
+
+$bps: (
+ false 'sm',
+ #{$md} 'md',
+ #{$lg} 'lg'
+);
+
+//  Others
+//  ───────────────────────────────────
+$global-radius: 4px;

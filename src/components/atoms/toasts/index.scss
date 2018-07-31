@@ -1,0 +1,33 @@
+@import "../../../assets/scss/helpers/variables";
+@import "../../../assets/scss/helpers/mixins";
+
+.toasts{
+  position: fixed;
+  top: $vr;
+  right: $vr;
+  z-index: 10;
+}
+.toast{
+  position: relative;
+  max-width: 40rem;
+  animation: toastAppear $anim-duration*2 $anim-easing forwards;
+
+  &__close{
+    position: absolute;
+    top: 1.3rem;
+    right: $vr;
+    font-weight: 400;
+    font-size: 2.2rem;
+    cursor: pointer;
+  }
+}
+@keyframes toastAppear {
+  0%{
+    opacity: 0;
+    transform: translateY(-($vr/2));
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

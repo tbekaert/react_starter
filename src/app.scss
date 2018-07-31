@@ -1,0 +1,43 @@
+//
+//  A P P
+//
+//  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/*---
+  title:   Introduction
+  name:    intro
+  order: -1
+  ---
+
+  ### Bienvenue sur ce styleguide!
+
+  Vous retrouverez ici tous les styles inhérants au projet, vous permettant ainsi de kickstarter celui-ci au plus vite.
+
+  N'hésitez pas à utiliser ce document comme une aide rapide lors de la construction des différentes pages.
+*/
+
+//  Helpers
+//  ───────────────────────────────────
+@import 'assets/scss/helpers/variables';
+@import 'assets/scss/helpers/mixins';
+@import 'assets/scss/helpers/placeholders';
+@import 'assets/scss/helpers/debgrid';
+
+//  Global
+//  ───────────────────────────────────
+@import 'assets/scss/global/commons';
+@import 'assets/scss/global/typography';
+
+//  Atoms
+//  ───────────────────────────────────
+@import 'assets/scss/atoms/grid';
+@import 'assets/scss/atoms/helpers';
+@import 'assets/scss/atoms/icons';
+@import 'assets/scss/atoms/buttons';
+@import 'assets/scss/atoms/form';
+// @import 'assets/scss/atoms/modal';
+// @import 'assets/scss/atoms/alert';
+// @import 'assets/scss/atoms/table';
+
+//  Layout
+//  ───────────────────────────────────
+// @import 'assets/scss/layout/styleguides';

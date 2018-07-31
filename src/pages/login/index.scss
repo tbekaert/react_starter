@@ -1,0 +1,14 @@
+@import "../../assets/scss/helpers/variables";
+@import "../../assets/scss/helpers/mixins";
+
+.login {
+  min-height: 100vh;
+
+  .logo svg{
+    width: 9.8rem * 4;
+  }
+
+  section{
+    border-radius: 1.6rem;
+  }
+}
