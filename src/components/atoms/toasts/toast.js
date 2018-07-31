@@ -10,8 +10,8 @@ import './index.css';
 
 const Toast = ({ translate: t, toastType, onClick }) => (
   <div className="toast bg-white shadow bd-radius mgb-1 pgv-1 pgl-1 pgr-2">
-    <p className="no-margin mgb-0_5 h3 text-primary-dark">{ t(`toast.${toastType}.title`) }</p>
-    <p className="no-margin text-primary-dark">{ t(`toast.${toastType}.text`) }</p>
+    <p className="no-margin mgb-0_5 h3 text-primary-dark">{ t(`toasts.${toastType}.title`) }</p>
+    <p className="no-margin text-primary-dark">{ t(`toasts.${toastType}.text`) }</p>
     <span className="toast__close" onClick={ onClick }>x</span>
   </div>
 );
