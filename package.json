@@ -2,7 +2,7 @@
   "name": "react_starter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://siliconsalad.github.io/react_starter/",
+  "homepage": "https://tbekaert.github.io/react_starter/",
   "devDependencies": {
     "eslint": "^4.18.0",
     "eslint-config-airbnb": "^16.1.0",
